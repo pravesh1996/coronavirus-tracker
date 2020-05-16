@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Coronavirus Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/custom.css">
+</head>
+
+<body style="background-color: bisque">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <a class="navbar-brand" href="#">Coronavirus Tracker Application</a>
+
+</nav>
+<div class="container">
+    <p>This Application lists the current number of cases reported across the globe.</p>
+<div class="jumbotron">
+    <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+    <p class="lead">Total cases reported as of today</p>
+    <hr class="my-4">
+    <p>
+        <span>New Cases Reported since previous day:</span>
+        <span th:text="${totalNewCases}"></span>
+    </p>
+
+
+</div>
+
+<table class="table">
+    <tr>
+        <th>State</th>
+        <th>Country</th>
+        <th>Total Cases Confirmed</th>
+        <th>Changes Since Last Day</th>
+    </tr>
+    <tr th:each="locationStat : ${locationStats}">
+        <td th:text="${locationStat.state}"></td>
+        <td th:text="${locationStat.country}"></td>
+        <td th:text="${locationStat.latestTotalCases}">0</td>
+        <td th:text="${locationStat.diffFromPreviousDay}">0</td>
+    </tr>
+</table>
+
+</div>
+<!-- Site footer -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <h6>About</h6>
+                <p class="text-justify">This is Coronavirus Tracker Application . you can see all the details of corona cases.</p>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+
+
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h6>Quick Links</h6>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <p class="copyright-text">You can also contact me on Social media ->
+
+                </p>
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <ul class="social-icons">
+                    <li><a class="facebook" href="https://www.facebook.com/rajrajpoot1996?ref=bookmarks"><i class="fa fa-facebook fa-lg"></i></a></li>
+                    <li><a class="twitter" href="https://twitter.com/PRAVESH34735765"><i class="fa fa-twitter fa-lg"></i></a></li>
+                    <li><a class="github" href="https://github.com/pravesh1996"><i class="fa fa-github fa-lg"></i></a></li>
+                    <li><a class="linkedin" href="https://www.linkedin.com/in/pravesh-rajpoot-82b60b153/"><i class="fa fa-linkedin fa-lg"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+</body>
+
+</html>
