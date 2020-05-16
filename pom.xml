@@ -1,34 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE project [
-        <!ELEMENT project (modelVersion|parent|groupId|artifactId|version|name|description|properties|dependencies|build)*>
-        <!ATTLIST project
-                xmlns CDATA #REQUIRED
-                xmlns:xsi CDATA #REQUIRED
-                xsi:schemaLocation CDATA #REQUIRED>
-        <!ELEMENT modelVersion (#PCDATA)>
-        <!ELEMENT parent (groupId|artifactId|version|relativePath)*>
-        <!ELEMENT groupId (#PCDATA)>
-        <!ELEMENT artifactId (#PCDATA)>
-        <!ELEMENT version (#PCDATA)>
-        <!ELEMENT relativePath (#PCDATA)>
-        <!ELEMENT name (#PCDATA)>
-        <!ELEMENT description (#PCDATA)>
-        <!ELEMENT properties (java.version)*>
-        <!ELEMENT java.version (#PCDATA)>
-        <!ELEMENT dependencies (dependency)*>
-        <!ELEMENT dependency (groupId|artifactId|version|type|scope|optional|exclusions)*>
-        <!ELEMENT type (#PCDATA)>
-        <!ELEMENT scope (#PCDATA)>
-        <!ELEMENT optional (#PCDATA)>
-        <!ELEMENT exclusions (exclusion)*>
-        <!ELEMENT exclusion (groupId|artifactId)*>
-        <!ELEMENT build (plugins)*>
-        <!ELEMENT plugins (plugin)*>
-        <!ELEMENT plugin (groupId|artifactId)*>
-        ]>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -41,21 +15,58 @@
     <name>coronavirus-tracker</name>
     <description>Demo project for Spring Boot</description>
 
+
+
+
     <properties>
-        <java.version>11</java.version>
+
+        <java.version>11.0.7</java.version>
     </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+
+
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+            </plugin>
+            <plugin>
+
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <executions>
+                    <execution>
+                        <id>deploy-file</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy-file</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+
+    </build>
+
+
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.8.1</version>
-            <type>maven-plugin</type>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -74,6 +85,13 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+            <type>maven-plugin</type>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
@@ -85,21 +103,4 @@
             </exclusions>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <source>11</source>
-                <target>11</target>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>
